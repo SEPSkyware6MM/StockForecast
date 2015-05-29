@@ -5,8 +5,11 @@ import urllib.request
 from datetime import date
 
 def download_historical_data(symbol, from_date=date(2000, 3, 1), to_date=date(2014, 3, 1)):
+    #baseurl = 'http://ichart.finance.yahoo.com/table.csv?ignore=.csv' \
+    #          '&s={0}&a={1}&b={2}&c={3}&d={4}&e={5}&f={6}&g=d'
     baseurl = 'http://ichart.finance.yahoo.com/table.csv?ignore=.csv' \
-              '&s={0}&a={1}&b={2}&c={3}&d={4}&e={5}&f={6}&g=d'
+              '&s={0}&a={1}&b={2}&c={3}&g=d'
+
     url = baseurl.format(symbol, 
                          from_date.day-1, from_date.month-1, from_date.year,
                          to_date.day-1, to_date.month-1, to_date.year)
