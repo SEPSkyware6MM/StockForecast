@@ -64,7 +64,8 @@
 % draft mode.
 %
 \documentclass[conference]{IEEEtran}
-\usepackage{blindtext, graphicx}
+\usepackage[]{blindtext, graphicx}
+\usepackage[hidelinks]{hyperref}
 % Add the compsoc option for Computer Society conferences.
 %
 % If IEEEtran.cls has not been installed into the LaTeX system files,
@@ -411,8 +412,8 @@ In this paper, we propose several methods to predict future stock prices. There 
 a lot of algorithms out there but some are more reliable than others. As expected,
 in most cases the general rule: \textit{"the more complex, the better the prediction" } is true.
 However there are some relatively easy algorithms than can predict the stock prices of the future quite well.
-We are going to present and analyze some of these algorithms and take a deeper look into them.
-Just to make this clear, there is not a single algorithm out there, than can predict the future of a 
+We are going to present and analyse some of these algorithms and take a deeper look into them.
+Just to make this clear, there is not a single algorithm, than can predict the future of a 
 stock 100\% correctly. The relationships of the global stock market are to complex to bring them down in a 
 single computer program. We will show the experimental results we got with several algorithms and compare them.
 Also we will take a short look into investment strategies based on these forecasts and take a look at the results.
@@ -454,10 +455,23 @@ Since the stock market is global, there are many relationships between stocks. S
 \\
 One very important thing that has to be observed are the international newscasts. If the global economy, or even the economy of a single country is going down, the stock market will sooner or later follow that trend. But this trends are most likely to be relatively slow and easy to predict even looking at the stock prices itself. What is more dangerous are catastrophes. After a catastrophe there is often a low point on the stock market. This low point comes so fast, that only algorithms that observe the news have a chance to prevent huge losses.
 \\
-In this paper we are going to compare some algorithms and their functionality. We also like to share some of our experimental results we had with the algorithms. We only used algorithms that do not take global news in account because we wanted to see, how good the algorithms were in an isolated environment analysing past prices only. We decided to do it that way, because the algorithms themselves should work properly and examining news would be an easy addition to these working algorithms. % ABSCHNITTS FUTURE WORK This newscrawler linkage would be a good subject for future research.
+In this paper we are going to compare some algorithms and their functionality. We also like to share some of our experimental results we had with the algorithms. We only used algorithms that do not take global news in account because we wanted to see, how good the algorithms were in an isolated environment analysing past prices only. We decided to do it that way, because the algorithms themselves should work properly and examining news would be an easy addition to these working algorithms. The problem with stock forecasting is, that the market is global. 
 
-\subsection{Subsection Heading Here}
-\blindtext
+
+% ABSCHNITTS FUTURE WORK This newscrawler linkage would be a good subject for future research.
+
+\section{essentials}
+
+We investigated algorithms that bring good results with time series analysis. The computer programs we implemented were specialized  making a good prediction only looking at one single stock and its trend. These algorithms were tested on real stock data we fetched from the yahoo finance API. 
+\\
+We used yahoo finance because it gives easy access to numerous stocks and their historical prices. The API yahoo grants is pretty simple. The only thing you have to do to download the data you need is, preparing a link so it fits your needs. For example the link: 
+\\
+\textit{\url{http://real-chart.finance.yahoo.com/table.csv?s=IBM&a=00&b=2&c=1962&d=04&e=21&f=2015&g=d&ignore=.csv}}
+\\
+ provides the data in a csv-file. The stock that this link is going to download is IBM (International Business Machines Corporation). It is also possible to adjust the timespan and format of the data. 
+This method of getting historical stock market data is pretty easy to implement in various programming languages. It is also possible to download the csv-file to your computer with this link.
+\\
+After we got the data we needed, we started implementing the algorithms that we thought of. % beschreiben wie der algorithmus von Herr Fischer funktioniert und die 2-3 die wir noch implementiert haben
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
