@@ -3,6 +3,7 @@ import sys
 import yahoofinance 
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -49,3 +50,27 @@ if __name__ == '__main__':
     plt.legend()
     
     plt.show()
+
+    events = d[d.Crossover != 0]
+    if events.Crossover[-1] == 1:
+        events = events[:-1]
+
+    holding = False
+    account = 0.0
+
+    for (index, cross) in events.Crossover.iteritems():
+        price = events.Close.loc[index]
+        if not holding and cross == 1:
+            print('Buy for: ', price)
+            account -= price
+
+            holding = True
+
+        elif holding and cross == -1:
+            print('Sell for: ', price)
+            account += price
+
+            holding = False
+            
+
+    print('You made {} per stock'.format(account))
