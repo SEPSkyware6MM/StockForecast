@@ -32,12 +32,12 @@ public class StockForecast {
 //        int timeSpanForTest = 1000;
 //        System.out.println("Gewinn " + stock + " letzten " + timeSpanForTest + "Tage = " + movingAverageTest(closes, timeSpanForTest));
 
-//        writeNormedToFile(opens, closes);
+        writeNormedToFile(opens, closes);
 //        int days = 15;
 //        System.out.println("vorhersage " + movingAverageForecast(closes, days) + "Actual " + closes.get(0) + "differenz " 
 //                + (movingAverageForecast(closes, days) - closes.get(0)));
         
-        movingAverageForecast(closes, 15, 4);
+//        movingAverageForecast(closes, 15, 4);
     }
 
     /**
@@ -75,7 +75,7 @@ public class StockForecast {
         ArrayList<Double> opensNormed = new ArrayList<>();
         ArrayList<Double> closesNormed = new ArrayList<>();
         //30 steht für die Anzahl der Zeilen die in die Datei geschrieben werden
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 150; i++) {
             opensNormed.add(getNormed(opens, i));
             closesNormed.add(getNormed(closes, i));
         }
@@ -159,7 +159,7 @@ public class StockForecast {
      * @return
      */
     public static double getNormed(ArrayList<Double> list, int day) {
-        return list.get(day) / getMaximum(list);
+        return (list.get(day)- getMinimum(list))/(getMaximum(list)-getMinimum(list));
 //        double ergebnisTest = (closes.get(0) + Math.abs(getMinimum(closes))) / getMaximum(closes);
     }
 

@@ -19,14 +19,19 @@ public class FileWriter {
 
     public static void writeToFile(String filePath, ArrayList<Double> openArray, ArrayList<Double> closeArray) {
         String firstLine = "3";
-        String secondLine = "30";
+        String secondLine = "100";
 
         try {
             PrintWriter writer = new PrintWriter(filePath);
             writer.println(firstLine);
             writer.println(secondLine);
-            for (int i = 29; i >= 0; i--) {
-                String line = "1.0," + openArray.get(i) + "," + closeArray.get(i) + ",-0.99";
+            int lines = 100;
+            
+            for (int i = 100; i > 0; i--) {
+                String line = "1.0,";
+                for (int j = 29 + i; j >= 0 + i; j--) {
+                    line += openArray.get(j) + ",";
+                }
                 writer.println(line);
             }
             writer.close();
