@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class FileWriter {
 
     public static void writeToFile(String filePath, ArrayList<Double> openArray, ArrayList<Double> closeArray) {
-        String firstLine = "30";
+        String firstLine = "3";
         String secondLine = "100";
 
         try {

@@ -455,7 +455,7 @@ Since the stock market is global, there are many relationships between stocks. S
 \\
 One very important thing that has to be observed are the international newscasts. If the global economy, or even the economy of a single country is going down, the stock market will sooner or later follow that trend. But this trends are most likely to be relatively slow and easy to predict even looking at the stock prices itself. What is more dangerous are catastrophes. After a catastrophe there is often a low point on the stock market. This low point comes so fast, that only algorithms that observe the news have a chance to prevent huge losses.
 \\
-In this paper we are going to compare some algorithms and their functionality. We also like to share some of our experimental results we had with the algorithms. We only used algorithms that do not take global news in account because we wanted to see, how good the algorithms were in an isolated environment analysing past prices only. We decided to do it that way, because the algorithms themselves should work properly and examining news would be an easy addition to these working algorithms. The problem with stock forecasting is, that the market is global. 
+In this paper we are going to compare some algorithms and their functionality. We also like to share some of our experimental results we had with the algorithms. We only used algorithms that do not take global news in account because we wanted to see, how good the algorithms were in an isolated environment analysing past prices only. We decided to do it that way, because the algorithms themselves should work properly and examining news would be an easy addition to these working algorithms.
 
 
 % ABSCHNITTS FUTURE WORK This newscrawler linkage would be a good subject for future research.
@@ -514,11 +514,24 @@ If the condition MA$ _{50} >$  MA$ _{200} $ is fulfilled the algorithms gives th
 
 
 
-\subsection{Algorithm using neuronal network}
+\subsection{Algorithm using neuronal network and machine learning}
 
-This algorithm is based on neuronal networks. 
+It does a prediction based on machine learning and a neuronal network. This algorithm gets a stock prices of the past and tries to learn. Machine learning algorithms learn from and try to make predictions on data. In general these algorithms try to recognize a pattern in the data that is given to them and make predictions based on this patterns.
+\\
+Our algorithm gets the data of a specific stock and gives a forecast based on the past closing prices of this stock. After we downloaded the data from yahoo finance, we need to normalize the values.
+\\
+\\
+$ normalized(C_{i}) = \frac{C_{i} - C_{min}}{C_{max} - C_{min}} $
+\\
+\\
+With $ C_{min} $ the minimum close price of the stock in the span we examined and $ C_{max} $ as the maximum. The algorithm needs this normalized data to work properly. After we normalized all closing prices of the interval we wanted to investigate, we wrote them into a text file in a specific format. This format is very important, because it is needed for the algorithm to learn properly. 
+\\
+Every row in the text file got a specific number of normalized values. The first $ n-1 $ values are the ones the algorithm tries to find a specific arithmetic in. The last value in every line is the one, the algorithm tries to predict. After every line, the algorithm reviews its own results and compares it to the real value that is written in the file.
+\\
+So with every line the algorithm works on, it gets more experience with this kind of prediction. In the last line of our text file, we wrote down the current stock prices until the one of today. The last number of this line is then predicted by algorithm and should be close to the real stock price of the next day.
+\\
+We tried different values for the number of neurons, lines and values in every line. These changes led to varieties in our results. After we predicted the price for the next day, we did the same algorithm again and took our first prediction as the last day. So we were able to predict more than just one day in advance. Later in the result section, we will show, that going far into the future leads to significant differences in prediction and reality.
 
-TODO: den algorithmus von Herr Fischer beschreiben. Es geht dabei um neuronale netze.!
 
 \section{Results}
 \label{results}
