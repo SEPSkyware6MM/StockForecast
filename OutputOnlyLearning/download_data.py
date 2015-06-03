@@ -9,27 +9,19 @@ import datetime
 import pandas as pd
 from pandas.io.data import DataReader
 
-def generate_training_set(stock_data, prediction_days, training_days):
+def generate_training_set(name, stock_data, from_day, prediction_days, training_days):
     """
     Generates a training data set for further processing
     """
-    with open('training_data.csv', 'w', newline='') as csvfile:
+    with open(name, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
 
         writer.writerow([prediction_days])
         writer.writerow([training_days])
 
-        for i in range(0, training_days):
+        for i in range(from_day, from_day+training_days):
             sub = list(stock_data.iloc[i:i+prediction_days+1])
             writer.writerow([1.0,] + sub)
-
-def generate_test_set(stock_data, from_day, test_days):
-    """
-    Generates a list of data points to test against.
-    """
-    with open('test_data.csv', 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile, delimiter=',')
-        writer.writerow(stock_data.iloc[from_day:from_day+test_days])
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -46,9 +38,13 @@ if __name__ == '__main__':
     # Normalize data to 0.0-1.0
     ts['normalized'] = (ts.Close-ts.Close.min())/(ts.Close.max()-ts.Close.min())
 
-    prediction_days = 30
-    training_days = 400
+    prediction_days = 10
+    training_days = 200
     test_days = 100
-    generate_training_set(ts.normalized, prediction_days, training_days)
-    generate_test_set(ts.normalized, training_days, test_days)
+    generate_training_set('training_data.csv', 
+            ts.normalized, 0, prediction_days, training_days)
+    generate_training_set('test_data.csv',
+            ts.normalized, training_days, prediction_days, test_days)
+
+
 
