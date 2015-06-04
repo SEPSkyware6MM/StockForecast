@@ -564,6 +564,41 @@ This chapter is about the results we had with each algorithm individually. We wi
 
 \subsection{Algorithm using the latest trend}
 
+How this algorithm works in detail is described in section \ref{algorithm}. This algorithm is all about predicting the exact price of a stock for the next days. With this algorithm we tried to predict if a stock would go down or up on the next day. We also tried to predict more than just one day in the future. Later in this chapter we will show how good our predictions were on the first and on the nth day in the future. It is understandable that, the more you go into the future, the more unreliable the predictions become. 
+\\
+To get better and more reliable results, we did not test this method on single stocks. We wanted to get a big amount of predictions and see whether they were good. Because if you only predict one single price it is not really significant, but if you predict many prices and take the average of these predictions you get meaningful results. That is why we took 150 stocks for our algorithm to predict. We tested 3 sets of data with 150 stocks each.
+\\
+Also a very important thing is the amount of days the algorithm uses to make its prediction. We got the best results using something in the span of 10-15 past days. If you use more than 15 days, it does not really take the latest trend into account and if you use less than 10 days the timespan to get a good prediction is to short.
+\\
+\begin{center}
+\begin{tabularx}{0.49\textwidth}{|X|X|X|X|}
+\hline
+Days in the future & Set 1 & Set 2 & Set 3\\
+\hline
+\hline
+Day 1. & 0.043 \$ & 0.012 \$ & 0.028 \$\\
+\hline
+Day 2. & 0.049 \$ & 0.010 \$ & 0.033 \$\\
+\hline
+Day 3. & 0.059 \$ & 0.013 \$ & 0.041 \$\\
+\hline
+Day 4. & 0.089 \$ & 0.017 \$ & 0.038 \$\\
+\hline
+Day 5. & 0.092 \$ & 0.024 \$ & 0.049 \$\\
+\hline
+Day 6 & 0.126 \$ & 0.035 \$ & 0.062 \$\\
+\hline
+\hline
+Day 15. & 1.740 \$ & 0.092 \$ & 0.107 \$\\
+\hline
+
+\end{tabularx}
+\\[5pt]
+Table 1. Difference between prediction and real data
+\end{center}
+
+You can see in this table, that the prediction for the first 3-4 days is relatively accurate. However the time after that the difference between prediction and real data gets bigger. Nevertheless in the first 6 days its still in an acceptable scope. But there are relatively big differences between the sets. These differences come with the fact that, if a stock is going smooth out prediction algorithm is pretty accurate. The algorithm is not good on predicting big price drops so if that happens the prediction gets pretty inaccurate. We suppose that in our first test set, there were more stocks with price spices than in the other to sets. That explains, that the predictions of the first set are not as accurate as the other two sets. So we consider our algorithm to be pretty accurate if the stock market goes smooth and has no big spikes because of some external reason. A span of a few cents in a prediction of 150 stocks is pretty accurate in our opinion.
+
 \subsection{Algorithm using long term moving average}
 
 As described in Chapter \ref{algorithm} this algorithm uses two different MA's to make a good prediction when to buy and when to sell a stock. It is not an algorithm to predict an exact price but rather to make profit without knowing the exact price the stock is going to have the next days.
@@ -617,7 +652,7 @@ Random combination 4. & 15.74 \$\\
 \hline
 \end{tabularx}
 \\[5pt]
-Table with results of LTMA
+Table 2. Results of LTMA
 \end{center}
 
 As you can see in the table, our results with this algorithm were pretty good. While the single stock outcome is not very expressive, the results of the random combination of 100 stocks is also fine. If we only take the combinations of stocks into account, we made a total profit of \textbf{89.89 \$}. However this are only our test results with the amount of stocks we tested in a special period of time. Even with these test results it is not ensured, that our algorithm would always or even most of the time make profit.
@@ -713,10 +748,13 @@ As you can see in the table, our results with this algorithm were pretty good. W
 
 \section{Conclusion}
 \label{conclusion}
+
+The conclusion of this paper is, that you can get pretty good results in forecasting stock prices and try to get profit out of the stock market even with algorithms that do not consider the global news. However the stock market is pretty fragile and fast-paced, so while you are trying to make profit, it is always a possibility that the exact opposite happens. But with the right algorithms it can be worth the risk of investing into the market. 
+
 \section{Future Work}
 \label{futurework}
 
-% ABSCHNITTS FUTURE WORK This newscrawler linkage would be a good subject for future research.
+We implemented good working algorithms that can predict the stock price. But if these algorithms would take the global news into account there prediction could be better. With our algorithms we can never have a perfect result because if something global happens that affects the stock market, our algorithms are not fast enough to react and sell all stocks we bought. So the addition of a newscrawler would be a good idea for future work because it would help making the algorithms even more reliable in unforeseeable circumstances.
 
 
 
@@ -735,8 +773,8 @@ As you can see in the table, our results with this algorithm were pretty good. W
 %
 
 
-\appendices
-\section{list of abbreviations}
+\appendix
+\section*{list of abbreviations}
 MA - Moving average
 \\
 LTMA - Long term moving average Algorithm
@@ -746,7 +784,7 @@ LTA - Latest trend algorithm
 % use section* for acknowledgement
 \section*{Acknowledgment}
 
-The authors would like to thank...
+The authors would like to thank Prof. Dr. Joern Fischer for his help and support while researching in this subject
 
 
 
