@@ -66,6 +66,10 @@
 \documentclass[conference]{IEEEtran}
 \usepackage[]{blindtext, graphicx}
 \usepackage[hidelinks]{hyperref}
+\graphicspath{ {Figures/} }
+\usepackage{tabularx}
+\usepackage{color}
+
 % Add the compsoc option for Computer Society conferences.
 %
 % If IEEEtran.cls has not been installed into the LaTeX system files,
@@ -354,7 +358,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Stock forecasting methods and their usage}
+\title{Stock forecasting algorithms and their usage}
 
 
 % author names and affiliations
@@ -555,6 +559,71 @@ We tried different values for the number of neurons, lines and values in every l
 
 \section{Results}
 \label{results}
+
+This chapter is about the results we had with each algorithm individually. We will also discuss which parameters gave the best and worst results and why that happened. 
+
+\subsection{Algorithm using the latest trend}
+
+\subsection{Algorithm using long term moving average}
+
+As described in Chapter \ref{algorithm} this algorithm uses two different MA's to make a good prediction when to buy and when to sell a stock. It is not an algorithm to predict an exact price but rather to make profit without knowing the exact price the stock is going to have the next days.
+\\
+\\
+\begin{figure}[!h]
+  \includegraphics{MSFT_MA}
+  \caption{Moving Average of MSFT (Microsoft Corporation)}
+  \label{fig:MSFT_MA}
+\end{figure}
+
+ In Figure \ref{fig:MSFT_MA} you can see the development the stock of Microsoft Corporation\texttrademark made, in the last 11 years. If you look closely, there is also a red and green line in this Figure. The green line is the MA of the last 200 days of every point in this graph. The  red line marks the MA of the last 50 days. Now as described in section \ref{algorithm}, we used these two things to figure out when to buy and when to sell a stock.
+\\
+We now take a closer look at a single passage of the stock to explain our approach in more detail.
+\\
+\begin{figure}[!h]
+  \includegraphics{MSFT_Zoomed}
+  \caption{MSFT stock zoomed}
+  \label{fig:MSFT_Z}
+\end{figure}
+
+Figure \ref{fig:MSFT_Z} shows only a small segment of the stocks development. You can see now, that the real stock price (blue line) is way different to both of the MA's. If you look closely, there is a red and a green dot on the stock price. This dots mark the spots, where the 200 day MA and the 50 day MA cross each other. Every time this happens, it is best to either sell of buy the stock. If the dot is green, the algorithms says, that now is the right time to buy the stock for the current price. And if it is red, the best thing is to sell the stock. The dots are on the blue line, because it marks the real price of the stock at this point of time. With this algorithm, we had good results as shown in the table below. We only investigated the last 1000 days of a stock for our test because we thought this was enough data to work with. So we tested our algorithm and bought and sold stocks based on the algorithm. In the first column of the table below you see the stocks we tested the algorithm with. In the second column, we wrote down, how much profit we made buying and selling only \textbf{one} instance of the stock. Just to make this clear, if you would by two instances of the stock you would make double the profit of loss we made. Remember that this are only examples, this results are not generalizable in any way. But we did not only do test with single stocks as they are not to meaningful. That is why we generated 100 random stocks and used our algorithm on all of them at the same time to get more significant results.
+
+\begin{center}
+\begin{tabularx}{0.49\textwidth}{|X|X|}
+\hline
+Stock(s) used & Outcome\\
+\hline
+\hline
+MSFT\footnote{Microsoft Corporation\texttrademark} & 13.39 \$\\
+\hline
+MCD\footnote{McDonald's Corp\texttrademark} & 2.71 \$\\
+\hline
+YHOO\footnote{Yahoo! Inc.\texttrademark} & 20.05 \$\\
+\hline
+
+NVDA\footnote{NVIDIA Corporation\texttrademark} & \textcolor{red}{-13.70 \$}\\
+\hline
+INTC\footnote{Intel Corporation\texttrademark} & 5.70 \$\\
+\hline
+AMZN\footnote{Amazon.com Inc.\texttrademark} & 128.87 \$\\
+\hline
+\hline
+Random combination 1. & 34.53 \$\\
+\hline
+Random combination 2. &\textcolor{red}{-17.32 \$}\\
+\hline
+Random combination 3. & 56.94 \$\\
+\hline
+Random combination 4. & 15.74 \$\\
+\hline
+\end{tabularx}
+\\[5pt]
+Table with results of LTMA
+\end{center}
+
+As you can see in the table, our results with this algorithm were pretty good. While the single stock outcome is not very expressive, the results of the random combination of 100 stocks is also fine. If we only take the combinations of stocks into account, we made a total profit of \textbf{89.89 \$}. However this are only our test results with the amount of stocks we tested in a special period of time. Even with these test results it is not ensured, that our algorithm would always or even most of the time make profit.
+
+\subsection{3rd algorithm}
+
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
@@ -667,13 +736,19 @@ We tried different values for the number of neurons, lines and values in every l
 
 
 \appendices
-\section{Proof of the First Zonklar Equation}
+\section{list of abbreviations}
+MA - Moving average
+\\
+LTMA - Long term moving average Algorithm
+\\
+LTA - Latest trend algorithm
 
 % use section* for acknowledgement
 \section*{Acknowledgment}
 
-
 The authors would like to thank...
+
+
 
 
 % Can use something like this to put references on a page
