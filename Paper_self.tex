@@ -448,19 +448,38 @@ stock, forecast, prediction, paper, algorithms, neuronal-network.
 
 
 \section{Introduction}
+\label{introduction}
+\subsection{Introduction to stock forecasting}
+
 There is a huge variety of methods that are used in forecasting stock prices. Many of the algorithms that have been made-up just use structured data like tables with old stock prices in it. The aim of all these algorithms is to maximize the profit while holding the risk as low as possible.
 \\
 Since the stock market is global, there are many relationships between stocks. Some of them are paired with others so if the price of one stock goes down, the other stock will follow this trend.
-%Stocks are also influenced by numerous factors and these factors also have relationships between each other. This leads us to the thought, that a good stock prediction has to consider more than just old stock prices. 
+Stocks are also influenced by numerous factors and these factors also have relationships between each other. This leads us to the thought, that a good stock prediction has to consider more than just old stock prices. However it is still possible to make a good prediction just based on old prices.
 \\
 One very important thing that has to be observed are the international newscasts. If the global economy, or even the economy of a single country is going down, the stock market will sooner or later follow that trend. But this trends are most likely to be relatively slow and easy to predict even looking at the stock prices itself. What is more dangerous are catastrophes. After a catastrophe there is often a low point on the stock market. This low point comes so fast, that only algorithms that observe the news have a chance to prevent huge losses.
 \\
-In this paper we are going to compare some algorithms and their functionality. We also like to share some of our experimental results we had with the algorithms. We only used algorithms that do not take global news in account because we wanted to see, how good the algorithms were in an isolated environment analysing past prices only. We decided to do it that way, because the algorithms themselves should work properly and examining news would be an easy addition to these working algorithms.
+Another thing we want you to note is, that we did all our tests on old data of the stock market. Even if we \textit{bought} a stock at some specific point of time, we did not really buy this stock on the real market. So our tests did not affect the stock market at all. Because if you would really buy and sell stocks on the market while testing, it would always affect the results you get.
+
+\subsection{Motivation}
+
+In this paper we are going to compare some algorithms and their functionality. The main goal of these algorithms is, to predict a rise or fall in the price before the actual rise or fall happens. It is very important to find some kind of pattern in the stock prices of the past to do a accurate prediction of the future prices. We also like to share some of our experimental results we had with the algorithms. We only used algorithms that do not take global news in account because we wanted to see, how good the algorithms were in an isolated environment analysing past prices only. We decided to do it that way, because the algorithms themselves should work properly and examining news would be an easy addition to these working algorithms.
+\\
+The main goal of the project was, to find a good working stock forecast algorithm to predict future stock prices. Later in this paper, we will introduce parameters and variables, that give the best results combined with our algorithms.
+
+\subsection{Document overview}
+In Section \ref{essentials} we try to briefly cover the background information you need as the reader to understand the most important things about our project.
+\\
+Section \ref{algorithm} describes the algorithms we use in more detail. Every algorithm we used is self implemented. 
+\\
+Chapter \ref{results} is about the test-results we got using the algorithms described in chapter \ref{algorithm}. We tested all algorithms with different inputs and parameters.
+\\
+In the section \ref{conclusion} we will interpret the results and check how we can use our results maybe to improve our algorithms even more.
+\\
+In chapter \ref{futurework} we will give some thing our algorithms can be extended with and work that can be done in the future.
 
 
-% ABSCHNITTS FUTURE WORK This newscrawler linkage would be a good subject for future research.
-
-\section{essentials}
+\section{Essentials}
+\label{essentials}
 
 We investigated algorithms that bring good results with time series analysis. The computer programs we implemented were specialized  making a good prediction only looking at one single stock and its trend. These algorithms were tested on real stock data we fetched from the yahoo finance API. 
 \\
@@ -478,6 +497,7 @@ After we got the data we needed, we started implementing the algorithms that we 
 % beschreiben wie der algorithmus von Herr Fischer funktioniert und die 2-3 die wir noch implementiert haben
 
 \section{Algorithms}
+\label{algorithm}
 
 We implemented three different algorithms to predict stock prices and maximise the outcome. All three of them only consider one stock at a time and do not take any global news or trends in account. In this section we will describe the algorithms we used in detail
 
@@ -623,8 +643,11 @@ We tried different values for the number of neurons, lines and values in every l
 
 
 \section{Conclusion}
-
+\label{conclusion}
 \section{Future Work}
+\label{futurework}
+
+% ABSCHNITTS FUTURE WORK This newscrawler linkage would be a good subject for future research.
 
 
 
