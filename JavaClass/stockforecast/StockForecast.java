@@ -20,7 +20,7 @@ public class StockForecast {
     public static void main(String[] args) {
         GregorianCalendar start = new GregorianCalendar(1960, 4, 20);
         GregorianCalendar end = new GregorianCalendar();
-        String stock = "MCD";
+        String stock = "NVDA";
         StockDownloader loader = new StockDownloader(stock, start, end);
         ArrayList<Double> closes = loader.getCloses();
         ArrayList<Double> opens = loader.getOpens();
@@ -29,10 +29,10 @@ public class StockForecast {
 
 //        System.out.println("Maximum " + getMaximum(closes) + " Minumum " + getMinimum(closes) + " Today " + closes.get(0));
 //        System.out.println("normiert " + getNormed(closes, 0));
-//        int timeSpanForTest = 1000;
-//        System.out.println("Gewinn " + stock + " letzten " + timeSpanForTest + "Tage = " + movingAverageTest(closes, timeSpanForTest));
+        int timeSpanForTest = 1000;
+        System.out.println("Gewinn " + stock + " letzten " + timeSpanForTest + "Tage = " + movingAverageTest(closes, timeSpanForTest));
 
-        writeNormedToFile(opens, closes);
+//        writeNormedToFile(opens, closes);
 //        int days = 15;
 //        System.out.println("vorhersage " + movingAverageForecast(closes, days) + "Actual " + closes.get(0) + "differenz " 
 //                + (movingAverageForecast(closes, days) - closes.get(0)));
@@ -114,7 +114,8 @@ public class StockForecast {
 
         }
         if (aktuellGekauft) {
-            gewinn = gewinn - gekauftFuer + list.get(1);
+            System.out.println("am schluss verkauft");
+            gewinn = gewinn - gekauftFuer + list.get(0);
         }
         return gewinn;
     }
