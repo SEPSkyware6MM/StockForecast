@@ -47,7 +47,7 @@ if __name__ == '__main__':
     plt.scatter(crossunder.index, crossunder['Close'], s=40, color='green',
             label='Buy')
     
-    plt.legend()
+    plt.legend(loc='upper center', ncol=5, bbox_to_anchor=(0.5, 1.1))
     
     plt.show()
 
