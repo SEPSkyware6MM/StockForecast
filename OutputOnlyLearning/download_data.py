@@ -22,10 +22,10 @@ def generate_training_set(name, stock_data, from_day, prediction_days, training_
         for i in range(from_day, from_day+training_days):
             sub = list(stock_data.iloc[i:i+prediction_days])
             if sub[-1] > sub[-2]:
-                trend = 0.99999
+                trend = 1.0
             else:
-                trend = -0.99999
-            writer.writerow([1.0,] + sub+ [trend,])
+                trend = -1.0
+            writer.writerow([1.0,] + sub + [trend,])
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -36,14 +36,14 @@ if __name__ == '__main__':
     # Download historic stock prices from yahoo
     today = datetime.datetime.now()
     ts = DataReader(symbol, 'yahoo', 
-            today-datetime.timedelta(days=2 * 365),
+            today-datetime.timedelta(days=5 * 365),
             today)
 
     # Normalize data to 0.0-1.0
     ts['normalized'] = (ts.Close-ts.Close.min())/(ts.Close.max()-ts.Close.min())
 
-    prediction_days = 10
-    training_days = 200
+    prediction_days = 5
+    training_days = 500
     test_days = 100
     generate_training_set('training_data.csv', 
             ts.normalized, 0, prediction_days, training_days)
