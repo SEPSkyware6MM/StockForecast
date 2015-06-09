@@ -20,8 +20,12 @@ def generate_training_set(name, stock_data, from_day, prediction_days, training_
         writer.writerow([training_days])
 
         for i in range(from_day, from_day+training_days):
-            sub = list(stock_data.iloc[i:i+prediction_days+1])
-            writer.writerow([1.0,] + sub)
+            sub = list(stock_data.iloc[i:i+prediction_days])
+            if sub[-1] > sub[-2]:
+                trend = 0.99999
+            else:
+                trend = -0.99999
+            writer.writerow([1.0,] + sub+ [trend,])
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:

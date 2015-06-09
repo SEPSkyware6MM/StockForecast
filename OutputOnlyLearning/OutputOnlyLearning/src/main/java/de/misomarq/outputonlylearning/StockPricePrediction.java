@@ -71,7 +71,7 @@ public class StockPricePrediction {
         int testCases = (int)testFile.readSingleValue();
         
         testFile.readTable(testInputsize + 2, testCases);
-        
+        int counter = 0;
         for (int j = 0; j < testCases; ++j) {
             double []testVector = new double[testInputsize + 2];
             for (int i = 0; i < testInputsize + 2; ++i) {
@@ -80,11 +80,21 @@ public class StockPricePrediction {
             net.activate(testVector);
             double prediction = net.neuron[hiddenNeuronNum].output;
 
+            if(prediction  > 0 && testVector[testInputsize+1] > 0)
+            {
+                counter++;
+            }
+            else if(prediction  < 0 && testVector[testInputsize+1] < 0)
+            {
+                counter++;
+            }
+                
             System.out.println("Predicted was: " + prediction);
             System.out.println("Actual was: " + testVector[testInputsize+1]);
         }
         
         System.out.println("Done!");
+        System.out.println(counter +  " von " + testCases);
        //net.activate(inVector);
     }
 }
