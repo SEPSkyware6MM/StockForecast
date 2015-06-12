@@ -70,6 +70,10 @@
 \usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{color}
+\usepackage{fancyhdr}
+\pagestyle{plain}
+
+
 
 % Add the compsoc option for Computer Society conferences.
 %
@@ -414,11 +418,11 @@ Email: david.marquant@stud.hs-mannheim.de}
 \begin{abstract}
 %\boldmath
 In this paper, we propose several methods to predict future stock prices. There are
-a lot of algorithms out there but some are more reliable than others. As expected,
+a lot of algorithms out there but some are more reliable then others. As expected,
 in most cases the general rule: \textit{"the more complex, the better the prediction" } is true.
-However there are some relatively easy algorithms than can predict the stock prices of the future quite well.
+However there are some relatively easy algorithms that can predict the stock prices of the future quite well.
 We are going to present and analyse some of these algorithms and take a deeper look into them.
-Just to make this clear, there is not a single algorithm, than can predict the future of a 
+Just to make this clear, there is not a single algorithm, that can predict the future of a 
 stock 100\% correctly. The relationships of the global stock market are to complex to bring them down in a 
 single computer program. We will show the experimental results we got with several algorithms and compare them.
 Also we will take a short look into investment strategies based on these forecasts and take a look at the results.
@@ -432,7 +436,7 @@ Also we will take a short look into investment strategies based on these forecas
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-stock, forecast, prediction, paper, algorithms, neuronal-network.
+stock, forecast, prediction, paper, algorithms.
 \end{IEEEkeywords}
 
 
@@ -461,7 +465,7 @@ There is a huge variety of methods that are used in forecasting stock prices. Ma
 Since the stock market is global, there are many relationships between stocks. Some of them are paired with others so if the price of one stock goes down, the other stock will follow this trend.
 Stocks are also influenced by numerous factors and these factors also have relationships between each other. This leads us to the thought, that a good stock prediction has to consider more than just past stock prices. However it is still possible to make reasonably good predictions based on just previous prices.
 
-One very important thing is to observe the international newscasts. If the global economy, or even the economy of a single country is experiencing a financial crisis, the stock market will follow that trend. But those trends are most likely to be relatively slow and easy to predict even looking at the stock prices itself. What is more dangerous are catastrophes. After a catastrophe there is often a low point on the stock market. This low point comes so fast, that only algorithms that observe the news have a chance to prevent huge losses.
+One very important thing is to observe the international newscasts. If the global economy, or even the economy of a single country is experiencing a financial crisis, the stock market will follow that trend. But those trends are most likely to be relatively slow and easy to predict even looking at the stock prices itself. The thing that is more dangerous are catastrophes. After a catastrophe there is often a low point on the stock market. This low point comes so fast, that only algorithms that observe the news have a chance to prevent huge losses.
 
 Another thing to note is, that we did all our tests on historic data of the stock market. Even if we \textit{bought} a stock at some specific point of time, we did not really buy this stock on the real market. So our tests did not affect the stock market at all. Because buying and selling stocks on the market while testing, would always affect the received results.
 
@@ -488,7 +492,7 @@ In chapter \ref{futurework} some thing extensions to our algorithms are given, w
 
 We investigated algorithms that bring good results with time series analysis. The computer programs we implemented were specialized  making a good prediction only looking at one single stock and its trend. These algorithms were tested on real stock data we fetched from the yahoo finance API. 
 
-We used yahoo finance because it gives easy access to numerous stocks and their historical prices. The API yahoo grants is pretty simple. The only thing you have to do to download the data you need is, preparing a link so it fits your needs. For example the url -
+We used yahoo finance because it gives easy access to numerous stocks and their historical prices. The usage of the API yahoo grants is pretty simple. The only thing you have to do to download the data you need is, preparing a link so it fits your needs. For example the url -
 
 \textit{\url{http://real-chart.finance.yahoo.com/table.csv?s=IBM&a=00&b=2&c=1962&d=04&e=21&f=2015&g=d&ignore=.csv}}
 \\
@@ -501,7 +505,7 @@ After acquiring the necessary data, we started implementing the algorithms that 
 \section{Algorithms}
 \label{algorithm}
 
-We implemented three different algorithms to predict stock prices and maximise the outcome. All three of them only consider one stock at a time and do not take any global news or trends in account. In this section describes the algorithms used in detail
+We implemented three different algorithms to predict stock prices and maximise the outcome. All three of them only consider one stock at a time and do not take any global news or trends in account. In this section we describe the algorithms we used in more detail.
 
 \subsection{Algorithm using the latest trend}
 
@@ -565,7 +569,7 @@ This chapter is about the results we had with each algorithm individually. We wi
 
 How this algorithm works in detail is described in section \ref{algorithm}. This algorithm is all about predicting the exact price of a stock for the next days. With this algorithm we tried to predict if a stock would go down or up on the next day. We also tried to predict more than just one day in the future. Later in this chapter we will show how good our predictions were on the first and on the nth day in the future. It is understandable that, the more you go into the future, the more unreliable the predictions become. 
 
-To get better and more reliable results, we did not test this method on single stocks. We wanted to get a big amount of predictions and see whether they were good. Because if you only predict one single price it is not really significant, but if you predict many prices and take the average of these predictions you get meaningful results. That is why we took 150 stocks for our algorithm to predict. We tested 3 sets of data with 150 stocks each.
+To get better and more reliable results, we did not test this method on single stocks. We wanted to get a big amount of predictions and see whether they were good. If you only predict one single price it is not really significant, but if you predict many prices and take the average of these predictions you get meaningful results. That is why we took 150 stocks for our algorithm to predict. We tested 3 sets of data with 150 stocks each.
 
 Also a very important thing is the amount of days the algorithm uses to make its prediction. We got the best results using something in the span of 10-15 past days. If you use more than 15 days, it does not really take the latest trend into account and if you use less than 10 days the timespan to get a good prediction is to short.
 
@@ -602,20 +606,21 @@ You can see in this table, that the prediction for the first 3-4 days is relativ
 
 As described in Chapter \ref{algorithm} this algorithm uses two different MA's to make a good prediction when to buy and when to sell a stock. It is not an algorithm to predict an exact price but rather to make profit without knowing the exact price the stock is going to have the next days.
 
-\begin{figure}[!h]
-  \includegraphics{MSFT_MA}
-  \caption{Moving Average of MSFT (Microsoft Corporation)}
-  \label{fig:MSFT_MA}
+\begin{figure}[ht]
+  \includegraphics[width=0.5\textwidth]{MSFT_MA}
+	\caption{Moving Average of MSFT (Microsoft Corporation)}
+	\label{fig:MSFT_MA}
 \end{figure}
 
  In Figure \ref{fig:MSFT_MA} you can see the development the stock of Microsoft Corporation\texttrademark made, in the last 11 years. If you look closely, there is also a red and green line in this Figure. The green line is the MA of the last 200 days of every point in this graph. The  red line marks the MA of the last 50 days. Now as described in section \ref{algorithm}, we used these two things to figure out when to buy and when to sell a stock.
 
 We now take a closer look at a single passage of the stock to explain our approach in more detail.
+\\
 
-\begin{figure}[!h]
-  \includegraphics{MSFT_Zoomed}
-  \caption{MSFT stock zoomed}
-  \label{fig:MSFT_Z}
+\begin{figure}[ht]
+  \includegraphics[width=0.5\textwidth]{MSFT_Zoomed}
+	\caption{Detailed Moving Average of MSFT}
+	\label{fig:MSFT_Z}
 \end{figure}
 
 Figure \ref{fig:MSFT_Z} shows only a small segment of the stocks development. You can see now, that the real stock price (blue line) is way different to both of the MA's. If you look closely, there is a red and a green dot on the stock price. This dots mark the spots, where the 200 day MA and the 50 day MA cross each other. Every time this happens, it is best to either sell of buy the stock. If the dot is green, the algorithms says, that now is the right time to buy the stock for the current price. And if it is red, the best thing is to sell the stock. The dots are on the blue line, because it marks the real price of the stock at this point of time. With this algorithm, we had good results as shown in the table below. We only investigated the last 1000 days of a stock for our test because we thought this was enough data to work with. So we tested our algorithm and bought and sold stocks based on the algorithm. In the first column of the table below you see the stocks we tested the algorithm with. In the second column, we wrote down, how much profit we made buying and selling only \textbf{one} instance of the stock. Just to make this clear, if you would by two instances of the stock you would make double the profit of loss we made. Remember that this are only examples, this results are not generalizable in any way. But we did not only do test with single stocks as they are not to meaningful. That is why we generated 100 random stocks and used our algorithm on all of them at the same time to get more significant results.
@@ -770,12 +775,12 @@ Table 3. Results of Supervised Learning Algorithms
 \section{Conclusion}
 \label{conclusion}
 
-The conclusion of this paper is, that you can get pretty good results in forecasting stock prices and try to get profit out of the stock market even with algorithms that do not consider the global news. However the stock market is pretty fragile and fast-paced, so while you are trying to make profit, it is always a possibility that the exact opposite happens. But with the right algorithms it can be worth the risk of investing into the market. 
+The conclusion of this paper is, that you can get good results in forecasting stock prices and try to get profit out of the stock market even with algorithms that do not consider the global news. However the stock market is pretty fragile and fast-paced, so while you are trying to make profit, it is always a possibility that the exact opposite happens. But with the right algorithms it can be worth the risk of investing into the market. 
 
 \section{Future Work}
 \label{futurework}
 
-We implemented good working algorithms that can predict the stock price. But if these algorithms would take the global news into account there prediction could be better. With our algorithms we can never have a perfect result because if something global happens that affects the stock market, our algorithms are not fast enough to react and sell all stocks we bought. So the addition of a newscrawler would be a good idea for future work because it would help making the algorithms even more reliable in unforeseeable circumstances.
+We implemented good working algorithms that can predict the stock price. But if these algorithms would take the global news into account their prediction could be better. With our algorithms we can never have a perfect result because if something global happens that affects the stock market, our algorithms are not fast enough to react and sell all stocks we bought. So the addition of a newscrawler would be a good idea for future work because it would help making the algorithms even more reliable in unforeseeable circumstances.
 
 
 
