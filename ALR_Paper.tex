@@ -59,18 +59,18 @@
 { \huge \bfseries Methoden zur Börsenkursvorhersage}\\[0.4cm] % Title of your document
 \HRule \\[1.5cm]
 
+{\centering \emph{Autoren:}}
+\\
+
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
-\emph{Author:}\\
-Marc \textsc{Misoch} \\
-David \textsc{Marquant} % Your name
+Marc \textsc{Misoch} 
 \end{flushleft}
 \end{minipage}
 ~
 \begin{minipage}{0.4\textwidth}
 \begin{flushright} \large
-\emph{Supervisor:} \\
-Dr. Jörn \textsc{Fischer} % Supervisor's Name
+David \textsc{Marquant} % Supervisor's Name
 \end{flushright}
 \end{minipage}\\[4cm]
 
@@ -212,11 +212,10 @@ Dieser Algorithmus ist anders als der Latest Trend Algorithmus nicht dafür geei
 
 Diesen Algorithmus implementierten wir zunächst auch in Java. Dann wurde uns aber bewusst, dass es viel anschaulicher wäre wenn man auch anhand eines plots sehen könnte was genau passiert. Da wir uns mit plotten in Python besser auskannten als in Java, schrieben wir den Algorithmus noch einmal in Python.
 Um diesen Algorithmus umzusetzen benötigt man zunächst einmal zwei verschiedene Berechnungen. Zum einen muss man den Moving Average der letzten 50 und 200 Tage berechnen. Falls der Moving Average der letzten 50 Tage über dem der letzten 200 Tage liegt soll man die Aktie zum aktuellen Preis kaufen. Fällt jedoch der Moving Average der letzten 200 Tage unter den der letzten 50 soll man die Aktie wieder verkaufen. Zum besseren Verständnis dient das folgende in Python gezeichnete Schaubild.
-\\TODO BESSERES BILD EINFÜGEN!!!!!!!!!!!!!!!!!!!
----------------------------------------------
+
 \begin{figure}[!h]  
   \begin{center}
-    \includegraphics[width=\textwidth]{MSFT_Zoomed}
+    \includegraphics[width=\textwidth]{MSFT_BIG}
   \end{center}
       \caption{Moving Average MSFT}
 \end{figure}
