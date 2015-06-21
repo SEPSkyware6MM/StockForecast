@@ -261,6 +261,75 @@ Tabelle 2. Ergebnisse der Moving Average Algorithmus
 
 In dieser Tabelle kann man sehen, dass wir durchaus gute Ergebnisse mit diesem Algorithmus erziehlt haben. Diese Tabelle beruht auf den Aktienkursen der letzten 1000 Tage. Wenn wir uns nur die Random Combinations anschauen, stellen wir fest das wir insgesamt 89.89\$ Gewinn gemacht haben. Jedoch ist dieses Positive Ergebnis keine Garantie dafür, das der selbe Test noch einmal so positiv ausfallen würde. Dennoch sind wir zufrieden mit unseren Testergebnissen. 
 
+\subsection{Überwachtes Lernen}
+
+Das Ziel war es verschiedene Techniken des Überwachten Lernens zu testen und zu vergleichen. Wichtig dafür war es geeignete Features als Eingabe für die Algorithmen zu finden. Die verwendeten Merkmale waren Return Werte und Moving Averages der Return Werte.
+
+$Return_i = \frac{Close_i - Close_{i-n}}{Close_{i-n}}$
+
+$MA_t = \frac{\sum\limits_{n=0}^t Return_{i-n}}{t}$
+
+\subsubsection{Umsetzung}
+
+Zur Umsetzung haben wir Python verwendet, da die Python Bibliothek scikit-learn das
+Arbeiten mit Lernalgorithmen besonders einfach gestaltet. Außerdem ist das arbeiten mit
+Daten mithilfe von weiteren Bibliotheken wie pandas, scipy und numpy besonders 
+komfortabel. Des weiteren gibt es in pandas Funktionen zum Herunterladen von Daten mit
+Yahoo Finance.
+
+Die getesteten Algorithmen sind:
+
+\begin{itemize}
+\item k-nearest neighbour 
+\item Linear Discriminant Analysis
+\item Logistic Regression
+\item Quadratic Discriminant Analysis
+\item Support Vector Classification
+\end{itemize}
+
+Als Features wurden die Returns zu gestern und vorgestern verwendet und der Moving Average der Returns der letzten 5 Tage.
+
+\subsubsection{Ergebnisse}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|X|}
+\hline
+& MSFT & \^{}AXJO & \^{}FCHI & \^{}FTSE & \^{}HSI & \^{}IXIC & \^{}N225 \\
+\hline
+KNN & 0.43 & 0.47 & 0.48 & 0.45 & 0.51 & 0.51 & 0.49 \\
+LDA & 0.53 & 0.50 & 0.54 & 0.53 & 0.52 & 0.57 & 0.55 \\
+LR  & 0.53 & 0.50 & 0.54 & 0.53 & 0.52 & 0.57 & 0.54 \\
+QDA & 0.55 & 0.54 & 0.51 & 0.52 & 0.50 & 0.58 & 0.53 \\
+SVC & 0.50 & 0.48 & 0.53 & 0.49 & 0.46 & 0.58 & 0.48 \\
+\hline
+\end{tabularx}
+\\[5pt]
+Tabelle 3. Ergebnisse mit überwachtem Lernen
+\end{center}
+
+Wie in Tabelle 3. zu sehen ist konnten wir mit keinem der Algorithmen genaue Ergebnisse hervor sagen. Um akkurate Vorhersagen treffen zu können, wäre es nötig genauer zu untersuchen welche Features sinnvoll sind.
+
+\subsection{Output Only Neural Network}
+
+Von Herrn Fischer haben wir ein Java Programm erhalten, welches mithilfe eines neuronalen Netzwerkes versucht zwei Spiralen voneinander trennen. Dieses haben wir versucht so umzubauen, dass damit Börsentrends für den nächsten Tag geschätzt werden können.
+
+\begin{figure}[!h]  
+  \begin{center}
+    \includegraphics[width=\textwidth]{spirals}
+  \end{center}
+      \caption{Output Only Neural Network: Spiralen}
+\end{figure}
+
+\subsubsection{Umsetzung}
+
+Zuerst mussten die Daten heruntergeladen und auf das vorgegebene Eingabe Format gebracht werden. Als Eingabe für das Netz benötigten wir Werte zwischen 0.0 und 1.0. Deswegen wurden die Close Preise erst normalisiert bevor wir sie in einer CSV Datei dem Programm übergaben. Den Download und die Daten Transformationen implementierten wir in Python.
+
+Das Programm wurde so abgeändert, dass keine graphische Ausgabe mehr vorhanden war. Zuerst haben wir den Trainingsdatensatz eingelesen und damit das Netzwerk die Trends der Aktienkurse lernen lassen. Danach wurden die Testdaten geladen und im Netzwerk aktiviert, um die Performance der Vorhersage zu testen.
+
+\subsubsection{Ergebnisse}
+
+Ähnlich wie mit den Algorithmen des Überwachten Lernens konnten wir hier eine Genauigkeit von 50\%-60\% erzielen. Die Genauigkeit variierte zwischen Wiederholung mit gleichen Eingaben stark. Um die Genauigkeit der Vorhersagen zu erhöhen wäre es sinnvoll auch mit Return Werte anstatt von konkreten Close Preisen zu arbeiten.
+ 
 
 %----------------------------------------------------------------------------------------
 %	MAJOR SECTION X - TEMPLATE - UNCOMMENT AND FILL IN
@@ -290,7 +359,6 @@ gute Ergebnisse zu erzielen. Dennoch ist uns das, trotz dem anpassen sämtlicher
 \section{Ausblick}
 
 In der Zukunft könnte man unsere Algorithmen noch mit einem News-Crawler verbinden der verschiedene Nachrichtenseiten nach Neuigkeiten durchsucht.Diese Neuigkeiten könnten dann verwendet werden um eventuelle Veränderungen am Aktienmarkt besser und schneller vorherzusagen.
-
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
